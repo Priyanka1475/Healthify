@@ -1,19 +1,22 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/index.js"  // Backend entry point in the root directory
-    }
-  ],
   "builds": [
     {
       "src": "client/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "client/build" }  // React app build output
+      "config": {
+        "distDir": "client/build"
+      }
     },
     {
       "src": "index.js",
-      "use": "@vercel/node"  // Vercel will use this for the Node.js backend
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/index.js"
     }
   ]
 }
+
